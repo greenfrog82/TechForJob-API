@@ -1,0 +1,10 @@
+version: "3"
+services:
+  t4j:
+    build: ./
+    image: t4j:1.0.0
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./:/develop
+    working_dir: /develop
