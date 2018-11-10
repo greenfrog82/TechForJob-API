@@ -1,10 +1,21 @@
 version: "3"
 services:
-  t4j:
-    build: ./
-    image: t4j:1.0.0
-    stdin_open: true
-    tty: true
+  tfj_web_server:
+    restart: always
+    image: nginx:latest
+    ports:
+      - "8000:8000"
+      - "80:80"
     volumes:
-      - ./:/develop
-    working_dir: /develop
+      - ${TFJ_API_WORKDIR}:/work
+      - ./nginx.conf:/etc/nginx/sites-available/nginx.conf
+  # extra_hosts:
+  #   - "web:${DOCKER_HOST_IP}"
+  # t4j:
+  #   build: ./
+  #   image: t4j:1.0.0
+  #   stdin_open: true
+  #   tty: true
+  #   volumes:
+  #     - ./:/develop
+  #   working_dir: /develop
