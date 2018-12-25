@@ -1,20 +1,10 @@
 version: "3"
 services:
-  tfj_web_server:
+  t4f_db:
+    container_name: t4f-db
+    image: postgres
     restart: always
-    image: nginx:latest
-    ports:
-      - "80:80"
     volumes:
-      - ${TFJ_API_WORKDIR}:/work
-      - ./nginx.conf:/etc/nginx/sites-available/nginx.conf
-  # extra_hosts:
-  #   - "web:${DOCKER_HOST_IP}"
-  # t4j:
-  #   build: ./
-  #   image: t4j:1.0.0
-  #   stdin_open: true
-  #   tty: true
-  #   volumes:
-  #     - ./:/develop
-  #   working_dir: /develop
+      - ./tfj_api/db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
